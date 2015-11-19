@@ -36,7 +36,7 @@ h2 {
 #tableArea {
     width: 100%;
     align-content: center;
-    text-align: center;
+    text-align: left;
 }
 
 table {
@@ -47,6 +47,7 @@ table {
 td {
     border: 1px black;
     padding: 0.5em;
+    text-align: center;
 }
 
 /* Form formatting */
