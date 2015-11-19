@@ -81,6 +81,8 @@ var checkInputs = function(objInput) {
 /** Setup: wait for the document to load, then add the validate listener and run the
  *  search string parsing and table generation logic */
 $(document).ready(function() {
+    var mainForm = $("#mainForm");
+
     // Add a rule to check for end values being greater than or equal to the start values
     $.validator.addMethod("greaterEqual", function(value, element, param) {
         return !value || parseInt(value) >= parseInt($("#" + param).val());
@@ -93,12 +95,25 @@ $(document).ready(function() {
         return !other.val() || Math.abs(parseInt(value) - parseInt(other.val())) <= threshold;
     }, "The start and end values cannot differ by more than {1}.");
 
-    $("#mainForm").validate({
+    // Add a rule to allow only integers
+    $.validator.addMethod("integer", function (value, element, param) {
+        var intRegex = /-?\d+/;
+
+        return param && intRegex.test(value);
+    }, "Please enter an integer.");
+
+    // Return false at the end of the submit handler to suppress the page refresh
+    mainForm.submit(function(){
+
+        return false;
+    });
+
+    mainForm.validate({
         rules: {
-            rStart: { required: true, digits: true, deltaRange: ["rEnd", 25], maxlength: 3 },
-            rEnd: { required: true, digits: true, greaterEqual: "rStart", deltaRange: ["rStart", 25], maxlength: 3 },
-            cStart: { required: true, digits: true, deltaRange:  ["cEnd", 25], maxlength: 3 },
-            cEnd: { required: true, digits: true, greaterEqual: "cStart", deltaRange: ["cStart", 25], maxlength: 3 }
+            rStart: { required: true, integer: true, deltaRange: ["rEnd", 25], max: 1000 },
+            rEnd: { required: true, integer: true, greaterEqual: "rStart", deltaRange: ["rStart", 25], max: 1000 },
+            cStart: { required: true, integer: true, deltaRange:  ["cEnd", 25], max: 1000 },
+            cEnd: { required: true, integer: true, greaterEqual: "cStart", deltaRange: ["cStart", 25], max: 1000 }
         }
     });
 
