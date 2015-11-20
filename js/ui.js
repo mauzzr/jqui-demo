@@ -85,8 +85,6 @@ $(document).ready(function(){
     cStart.change(function() {
         var textInput = $(this),
             slider = $("div." + textInput.attr("class").split(" ")[0]);
-        console.log(slider);
-        console.log("div." + textInput.attr("class").split(" ")[0]);
         if (slider.slider("value") !== parseInt(textInput.val())){
             slider.slider("value", parseInt(textInput.val()));
         }
@@ -94,8 +92,6 @@ $(document).ready(function(){
     cEnd.change(function() {
         var textInput = $(this),
             slider = $("div." + textInput.attr("class").split(" ")[0]);
-        console.log(slider);
-        console.log("div." + textInput.attr("class").split(" ")[0]);
         if (slider.slider("value") !== parseInt(textInput.val())){
             slider.slider("value", parseInt(textInput.val()));
         }
@@ -103,8 +99,6 @@ $(document).ready(function(){
     rStart.change(function() {
         var textInput = $(this),
             slider = $("div." + textInput.attr("class").split(" ")[0]);
-        console.log(slider);
-        console.log("div." + textInput.attr("class").split(" ")[0]);
         if (slider.slider("value") !== parseInt(textInput.val())){
             slider.slider("value", parseInt(textInput.val()));
         }
@@ -112,8 +106,6 @@ $(document).ready(function(){
     rEnd.change(function() {
         var textInput = $(this),
             slider = $("div." + textInput.attr("class").split(" ")[0]);
-        console.log(slider);
-        console.log("div." + textInput.attr("class").split(" ")[0]);
         if (slider.slider("value") !== parseInt(textInput.val())){
             slider.slider("value", parseInt(textInput.val()));
         }
