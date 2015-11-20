@@ -9,7 +9,7 @@
            File: index.html, created 17 Nov. 2015
            This extension of the previously written multiplication table generator uses the jQuery UI framework to
            implement support for a tabbed interface of many generated tables.
-           See: js/mtable.js, js/tabs.js
+           See: js/mtable.js, js/ui.js
     -->
     <title>91.461 Assignment 8</title>
     <link rel="stylesheet" href="css/jquery-ui.min.css" />
@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/tabs.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/mtable.js"></script>
 </head>
 <body>
@@ -39,15 +39,19 @@
                         <legend>Columns</legend>
                         Start:<br />
                         <input name="cStart" id="cStart" /><label for="cStart" class="error"></label><br />
+                        <div id="sliderColumnStart"></div>
                         End:<br />
                         <input name="cEnd" id="cEnd" /><label for="cEnd" class="error"></label>
+                        <div id="sliderColumnEnd"></div>
                     </fieldset>
                     <fieldset>
                         <legend>Rows</legend>
                         Start:<br />
                         <input name="rStart" id="rStart" /><label for="rStart" class="error"></label><br />
+                        <div id="sliderRowStart"></div>
                         End:<br />
-                        <input name="rEnd" id="rEnd" /><label for="rEnd" class="error"></label>
+                        <input name="rEnd" id="rEnd" /><label for="rEnd" class="error"></label><br />
+                        <div id="sliderRowEnd"></div>
                     </fieldset><br />
                     <button type="submit">Generate</button>
                     <button type="reset">Clear</button>
