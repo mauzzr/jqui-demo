@@ -41,8 +41,14 @@ var removeTab = function(jqContext, startIndex, endIndex) {
 /* Set up UI widgets */
 $(document).ready(function(){
     var tableArea = $("#tableArea"),
-        objSliderOpts = {  };
+        objInputSliderOpts = { min: -100, max: 100 },
+        objTabIndexSliderOpts = { min: 2, range: true, disabled: true };
+
     tableArea.tabs();
 
-
+    // Initialize input slider widgets
+    $("#sliderColumnStart").slider(objInputSliderOpts);
+    $("#sliderColumnEnd").slider(objInputSliderOpts);
+    $("#sliderRowStart").slider(objInputSliderOpts);
+    $("#sliderRowEnd").slider(objInputSliderOpts);
 });

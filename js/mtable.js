@@ -137,10 +137,10 @@ $(document).ready(function() {
             return false;
         },
         rules: {
-            rStart: { required: true, integer: true, deltaRange: ["rEnd", 25], max: 1000 },
-            rEnd: { required: true, integer: true, greaterEqual: "rStart", deltaRange: ["rStart", 25], max: 1000 },
-            cStart: { required: true, integer: true, deltaRange:  ["cEnd", 25], max: 1000 },
-            cEnd: { required: true, integer: true, greaterEqual: "cStart", deltaRange: ["cStart", 25], max: 1000 }
+            rStart: { required: true, integer: true, deltaRange: ["rEnd", 25], min: -100, max: 100 },
+            rEnd: { required: true, integer: true, greaterEqual: "rStart", deltaRange: ["rStart", 25], min: -100, max: 100 },
+            cStart: { required: true, integer: true, deltaRange:  ["cEnd", 25], min: -100, max: 100 },
+            cEnd: { required: true, integer: true, greaterEqual: "cStart", deltaRange: ["cStart", 25], min: -100, max: 100 }
         }
     });
     /*
