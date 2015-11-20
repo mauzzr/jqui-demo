@@ -38,20 +38,20 @@
                     <fieldset>
                         <legend>Columns</legend>
                         Start:<br />
-                        <input name="cStart" id="cStart" /><label for="cStart" class="error"></label><br />
-                        <div id="sliderColumnStart"></div>
-                        End:<br /
-                        <input name="cEnd" id="cEnd" /><label for="cEnd" class="error"></label>
-                        <div id="sliderColumnEnd"></div>
+                        <input name="cStart" id="cStart" class="cStart" /><label for="cStart" class="error"></label><br />
+                        <div id="sliderColumnStart" class="cStart"></div>
+                        End:<br />
+                        <input name="cEnd" id="cEnd" class="cEnd" /><label for="cEnd" class="error"></label>
+                        <div id="sliderColumnEnd" class="cEnd"></div>
                     </fieldset>
                     <fieldset>
                         <legend>Rows</legend>
                         Start:<br />
-                        <input name="rStart" id="rStart" /><label for="rStart" class="error"></label><br />
-                        <div id="sliderRowStart"></div>
+                        <input name="rStart" id="rStart" class="rStart" /><label for="rStart" class="error"></label><br />
+                        <div id="sliderRowStart" class="rStart"></div>
                         End:<br />
-                        <input name="rEnd" id="rEnd" /><label for="rEnd" class="error"></label><br />
-                        <div id="sliderRowEnd"></div>
+                        <input name="rEnd" id="rEnd" class="rEnd" /><label for="rEnd" class="error"></label><br />
+                        <div id="sliderRowEnd" class="rEnd"></div>
                     </fieldset><br />
                     <button type="submit">Generate</button>
                     <button type="reset">Clear</button>
@@ -60,12 +60,13 @@
                     <form name="tabForm" id="tabForm">
                         <fieldset>
                             <legend>Remove Tabs</legend>
-                            <span class="ital">Tab indices start from the left (this tab is '1').</span>
+                            <span class="ital">Tab indices start from the left (this tab is '1').</span><br />
                             Start Tab Index:<br />
-                            <input name="tStart" id="tStart" /><label for="tStart" class="error"></label><br />
+                            <input name="tStart" id="tStart" class="tabRange" /><label for="tStart" class="error"></label><br />
                             End Tab Index:<br />
-                            <input name="tEnd" id="tEnd" /><label for="tEnd" class="error"></label>
-                            <div id="sliderTabRange"></div>
+                            <input name="tEnd" id="tEnd" class="tabRange" /><label for="tEnd" class="error"></label>
+                            <div id="sliderTabRange" class="tabRange"></div>
+                            <button type="submit">Remove Tabs</button>
                         </fieldset>
                     </form>
                 </div>

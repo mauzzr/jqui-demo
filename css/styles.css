@@ -1,8 +1,8 @@
-/* 91.461 Assignment 6
+/* 91.461 Assignment 8
  * File: styles.css
  * Author: Peter Welby, pwelby@cs.uml.edu
  * Styles to be applied to the page and the dynamically constructed table
- * See: ../index.html, ../js/mtable.js
+ * See: ../index.html, ../js/mtable.js, ../js/ui.js
  */
 
 /* Import Open Sans font from Google Fonts for use on this page */
@@ -62,12 +62,16 @@ td {
     text-align: center;
 }
 
+#tabFormArea {
+    margin-top: 10px;
+}
+
 fieldset {
     padding: 2px 8px 8px 8px;
     font-weight: 700;
     text-align: left;
     display: inline-block;
-    width: 25%;
+    width: 32%;
 }
 
 input {
@@ -141,6 +145,12 @@ label.error {
 
 #sliderRowEnd.ui-widget-content {
     margin-top: 5px;
+    border: 1px solid #646464;
+    background: #a0a0a0;
+}
+
+#sliderTabRange.ui-widget-content {
+    margin: 5px 0;
     border: 1px solid #646464;
     background: #a0a0a0;
 }

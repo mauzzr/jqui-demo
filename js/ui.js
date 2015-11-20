@@ -38,24 +38,70 @@ var removeTab = function(jqContext, startIndex, endIndex) {
     }
 };
 
+var slideChange = function(event, ui) {
+    // The class we added is the first, so get it from the event's target
+    var other = $("input." + $(event.target).attr("class").split(" ")[0]);
+
+    if (parseInt(other.val()) !== ui.value) {
+        other.val(ui.value);
+    }
+};
+
 /* Set up UI widgets */
 $(document).ready(function(){
-    var tableArea = $("#tableArea"),
-        objInputSliderOpts = { min: -100, max: 100 },
+    var tableArea = $("#tableArea"), tabForm = $("#tabForm"),
+        cStart = $("#cStart"), cEnd = $("#cEnd"),
+        rStart = $("#rStart"), rEnd = $("#rEnd"),
+        tStart = $("#tStart"), tEnd = $("#tEnd"),
+        objInputSliderOpts = { min: -100, max: 100, change: slideChange },
         objTabIndexSliderOpts = { min: 2, range: true, disabled: true };
 
     tableArea.tabs();
 
     // Initialize input slider widgets
-    $("#sliderColumnStart").slider(objInputSliderOpts);
-    $("#sliderColumnEnd").slider(objInputSliderOpts);
-    $("#sliderRowStart").slider(objInputSliderOpts);
-    $("#sliderRowEnd").slider(objInputSliderOpts);
+    var objInputSliders = {}, p,
+        sliderTabRange = $("#sliderTabRange").slider(objTabIndexSliderOpts);
+
+    objInputSliders.sliderColumnStart = $("#sliderColumnStart").slider(objInputSliderOpts);
+    objInputSliders.sliderColumnEnd = $("#sliderColumnEnd").slider(objInputSliderOpts);
+    objInputSliders.sliderRowStart = $("#sliderRowStart").slider(objInputSliderOpts);
+    objInputSliders.sliderRowEnd = $("#sliderRowEnd").slider(objInputSliderOpts);
+
+    // Input->Slider binding listeners (Slider->Input is handled by slideChange)
+    cStart.change(function() {
+        var slider = $("div." + cStart.attr("class"));
+        if (slider.value() !== parseInt(cStart.val())){
+            slider.value(parseInt(cStart.val()));
+        }
+    });
+    cEnd.change(function() {
+        var slider = $("div." + cEnd.attr("class"));
+        if (slider.value() !== parseInt(cEnd.val())){
+            slider.value(parseInt(cEnd.val()));
+        }
+    });
+    rStart.change(function() {
+        var slider = $("div." + rStart.attr("class"));
+        if (slider.value() !== parseInt(rStart.val())){
+            slider.value(parseInt(rStart.val()));
+        }
+    });
+    rEnd.change(function() {
+        var slider = $("div." + rEnd.attr("class"));
+        if (slider.value() !== parseInt(rEnd.val())){
+            slider.value(parseInt(rEnd.val()));
+        }
+    });
 
     // Initialize tab removal form validation
-    $("#tabForm").validate({
+    tabForm.validate({
         submitHandler: function(form) {
+            var startIndex = parseInt($("#tStart").val()),
+                endIndex = parseInt($("#tEnd").val());
 
+            removeTab($(form), startIndex, endIndex);
+
+            return false;
         },
         rules: {
             tStart: { required: true, integer: true, min: 2 },
