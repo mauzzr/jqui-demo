@@ -12,7 +12,7 @@
 /** Function: generateTable(objInput) -- generate the table from parsed search string values */
 var generateTable = function(objInput) {
     var i, j,
-        strContent = "",
+        strContent = "", strTitle = "",
         rStart, rEnd,
         cStart, cEnd;
 
@@ -53,7 +53,10 @@ var generateTable = function(objInput) {
 
     strContent += "</table>";
 
-    $("#tableArea").html(strContent);
+    strTitle += "[" + cStart + ", " + cEnd + "] * [" + rStart + ", " + rEnd + "]";
+
+    // addTab defined in ui.js
+    addTab($("#tableArea"), strTitle, strContent);
 };
 
 /** Function: checkInputs(objInput) -- check the parsed search string values for invalid inputs
@@ -81,8 +84,7 @@ var checkInputs = function(objInput) {
 /** Setup: wait for the document to load, then add the validate listener and run the
  *  search string parsing and table generation logic */
 $(document).ready(function() {
-    var mainForm = $("#mainForm"),
-        objInputVals = {};
+    var mainForm = $("#mainForm");
 
     // Add a rule to check for end values being greater than or equal to the start values
     $.validator.addMethod("greaterEqual", function(value, element, param) {
@@ -103,8 +105,13 @@ $(document).ready(function() {
         return param && intRegex.test(value);
     }, "Please enter an integer.");
 
+    /*
     // Return false at the end of the submit handler to suppress the page refresh
-    mainForm.submit(function(){
+    mainForm.submit(function(event){
+        var objInputVals = {};
+
+        event.preventDefault();
+
         objInputVals.cStart = $("#cStart").val();
         objInputVals.cEnd = $("#cEnd").val();
         objInputVals.rStart = $("#rStart").val();
@@ -114,8 +121,21 @@ $(document).ready(function() {
 
         return false;
     });
+    */
 
     mainForm.validate({
+        submitHandler: function(form) {
+            var objInputVals = {};
+
+            objInputVals.cStart = $("#cStart").val();
+            objInputVals.cEnd = $("#cEnd").val();
+            objInputVals.rStart = $("#rStart").val();
+            objInputVals.rEnd = $("#rEnd").val();
+
+            generateTable(objInputVals);
+
+            return false;
+        },
         rules: {
             rStart: { required: true, integer: true, deltaRange: ["rEnd", 25], max: 1000 },
             rEnd: { required: true, integer: true, greaterEqual: "rStart", deltaRange: ["rStart", 25], max: 1000 },
