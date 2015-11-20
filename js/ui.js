@@ -6,13 +6,13 @@
 
 "use strict";
 
-/** Function: addTab -- add a tab to the given jQuery UI tabs widget with the given title and content */
+/** Function: addTab -- add a tab to the given jQuery UI tabs widget with the given content */
 var addTab = function(jqContext, strTitle, strContent) {
     var targetUl = jqContext.children("ul"),
         numTabs = targetUl.children("li").length + 1;
 
     // Append an ugly string concatenation as the list item + anchor combo to create the tab with its title
-    targetUl.append("<li><a href='#tab" + numTabs + "'>" + strTitle + "</a></li>");
+    targetUl.append("<li><a href='#tab" + numTabs + "'>" + "Tab " + numTabs + "</a><span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>");
 
     // Do the same for the tab's content, where the div itself is the append target
     jqContext.append("<div id='tab" + numTabs + "'>" + strContent + "</div>");
@@ -36,6 +36,8 @@ var removeTab = function(jqContext, startIndex, endIndex) {
         jqContext.children("a[href='#tab" + i + "']").remove();
         jqContext.children("div#tab" + i).remove();
     }
+
+    jqContext.tabs("refresh");
 };
 
 var slideChange = function(event, ui) {
@@ -49,14 +51,22 @@ var slideChange = function(event, ui) {
 
 /* Set up UI widgets */
 $(document).ready(function(){
-    var tableArea = $("#tableArea"), tabForm = $("#tabForm"),
+    var tabs = $("#tableArea").tabs(), tabForm = $("#tabForm"),
         cStart = $("#cStart"), cEnd = $("#cEnd"),
         rStart = $("#rStart"), rEnd = $("#rEnd"),
         tStart = $("#tStart"), tEnd = $("#tEnd"),
         objInputSliderOpts = { min: -100, max: 100, change: slideChange },
         objTabIndexSliderOpts = { min: 2, range: true, disabled: true };
 
-    tableArea.tabs();
+    // Add tab-close listener for [x] icon on each tab -- found in the sample code at
+    // http://jqueryui.com/tabs/#manipulation
+    tabs.delegate( "span.ui-icon-close", "click", function() {
+        var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+        $( "#" + panelId ).remove();
+        tabs.tabs( "refresh" );
+    });
+
+
 
     // Initialize input slider widgets
     var objInputSliders = {}, p,
@@ -68,30 +78,45 @@ $(document).ready(function(){
     objInputSliders.sliderRowEnd = $("#sliderRowEnd").slider(objInputSliderOpts);
 
     // Input->Slider binding listeners (Slider->Input is handled by slideChange)
+    // Note: The validator adds an "error"/"valid" class so just to make sure we get OURS,
+    // we need to split the class attribute on the space character and take the first substring
     cStart.change(function() {
-        var slider = $("div." + cStart.attr("class"));
-        if (slider.value() !== parseInt(cStart.val())){
-            slider.value(parseInt(cStart.val()));
+        var textInput = $(this),
+            slider = $("div." + textInput.attr("class").split(" ")[0]);
+        console.log(slider);
+        console.log("div." + textInput.attr("class").split(" ")[0]);
+        if (slider.slider("value") !== parseInt(textInput.val())){
+            slider.slider("value", parseInt(textInput.val()));
         }
     });
     cEnd.change(function() {
-        var slider = $("div." + cEnd.attr("class"));
-        if (slider.value() !== parseInt(cEnd.val())){
-            slider.value(parseInt(cEnd.val()));
+        var textInput = $(this),
+            slider = $("div." + textInput.attr("class").split(" ")[0]);
+        console.log(slider);
+        console.log("div." + textInput.attr("class").split(" ")[0]);
+        if (slider.slider("value") !== parseInt(textInput.val())){
+            slider.slider("value", parseInt(textInput.val()));
         }
     });
     rStart.change(function() {
-        var slider = $("div." + rStart.attr("class"));
-        if (slider.value() !== parseInt(rStart.val())){
-            slider.value(parseInt(rStart.val()));
+        var textInput = $(this),
+            slider = $("div." + textInput.attr("class").split(" ")[0]);
+        console.log(slider);
+        console.log("div." + textInput.attr("class").split(" ")[0]);
+        if (slider.slider("value") !== parseInt(textInput.val())){
+            slider.slider("value", parseInt(textInput.val()));
         }
     });
     rEnd.change(function() {
-        var slider = $("div." + rEnd.attr("class"));
-        if (slider.value() !== parseInt(rEnd.val())){
-            slider.value(parseInt(rEnd.val()));
+        var textInput = $(this),
+            slider = $("div." + textInput.attr("class").split(" ")[0]);
+        console.log(slider);
+        console.log("div." + textInput.attr("class").split(" ")[0]);
+        if (slider.slider("value") !== parseInt(textInput.val())){
+            slider.slider("value", parseInt(textInput.val()));
         }
     });
+
 
     // Initialize tab removal form validation
     tabForm.validate({
