@@ -9,13 +9,15 @@
 /** Function: addTab -- add a tab to the given jQuery UI tabs widget with the given content */
 var addTab = function(jqContext, strTitle, strContent) {
     var targetUl = jqContext.children("ul"),
+        objInputSliderOpts = { min: -100, max: 100, change: slideChange },
         numTabs = targetUl.children("li").length + 1;
 
     // Append an ugly string concatenation as the list item + anchor combo to create the tab with its title
     targetUl.append("<li><a href='#tab" + numTabs + "'>" + "Tab " + numTabs + "</a><span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>");
 
     // Do the same for the tab's content, where the div itself is the append target
-    jqContext.append("<div id='tab" + numTabs + "'>" + strContent + "</div>");
+    jqContext.append("<div id='tab" + numTabs + "'>" + strContent +
+        "<div id='t" + numTabs + "cStart" + "</div>");
 
     // Refresh the tabs widget to register the new tab
     jqContext.tabs("refresh");
@@ -51,7 +53,7 @@ var slideChange = function(event, ui) {
 
 /* Set up UI widgets */
 $(document).ready(function(){
-    var tabs = $("#tableArea").tabs(), tabForm = $("#tabForm"),
+    var tabs = $("#tableArea").tabs(), //tabForm = $("#tabForm"),
         cStart = $("#cStart"), cEnd = $("#cEnd"),
         rStart = $("#rStart"), rEnd = $("#rEnd"),
         tStart = $("#tStart"), tEnd = $("#tEnd"),
@@ -119,6 +121,7 @@ $(document).ready(function(){
 
 
     // Initialize tab removal form validation
+    /*
     tabForm.validate({
         submitHandler: function(form) {
             var startIndex = parseInt($("#tStart").val()),
@@ -133,4 +136,5 @@ $(document).ready(function(){
             tEnd: { required: true, integer: true, min: 2, greaterEqual: "tStart" }
         }
     })
+    */
 });
