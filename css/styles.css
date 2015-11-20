@@ -52,6 +52,11 @@ td {
     color: #161616;
 }
 
+.ital {
+    font-weight: 400;
+    font-style: italic;
+}
+
 /* Form formatting */
 #controlPanel {
     text-align: center;

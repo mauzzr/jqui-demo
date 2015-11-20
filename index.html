@@ -56,6 +56,19 @@
                     <button type="submit">Generate</button>
                     <button type="reset">Clear</button>
                 </form>
+                <div id="tabFormArea">
+                    <form name="tabForm" id="tabForm">
+                        <fieldset>
+                            <legend>Remove Tabs</legend>
+                            <span class="ital">Tab indices start from the left (this tab is '1').</span>
+                            Start Tab Index:<br />
+                            <input name="tStart" id="tStart" /><label for="tStart" class="error"></label><br />
+                            End Tab Index:<br />
+                            <input name="tEnd" id="tEnd" /><label for="tEnd" class="error"></label>
+                            <div id="sliderTabRange"></div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
         <div id="message"></div>
