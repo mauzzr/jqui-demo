@@ -36,7 +36,7 @@ h2 {
 #tableArea {
     width: 100%;
     align-content: center;
-    text-align: left;
+    text-align: center;
 }
 
 table {
@@ -49,6 +49,7 @@ td {
     padding: 0.5em;
     background-color: white;
     text-align: center;
+    color: #161616;
 }
 
 /* Form formatting */
@@ -88,7 +89,7 @@ button {
 }
 
 .squareProduct {
-    background-color: rgba(0, 108, 255, 0.5);
+    background-color: #006CFF;
 }
 
 /* Styles for jQuery validation */
