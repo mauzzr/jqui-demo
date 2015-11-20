@@ -111,6 +111,31 @@ label.error {
 }
 
 .ui-widget button {
+    margin-top: 8px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
+}
+
+#sliderColumnStart.ui-widget-content {
+    margin-top: 5px;
+    border: 1px solid #646464;
+    background: #a0a0a0;
+}
+
+#sliderColumnEnd.ui-widget-content {
+    margin-top: 5px;
+    border: 1px solid #646464;
+    background: #a0a0a0;
+}
+
+#sliderRowStart.ui-widget-content {
+    margin-top: 5px;
+    border: 1px solid #646464;
+    background: #a0a0a0;
+}
+
+#sliderRowEnd.ui-widget-content {
+    margin-top: 5px;
+    border: 1px solid #646464;
+    background: #a0a0a0;
 }
