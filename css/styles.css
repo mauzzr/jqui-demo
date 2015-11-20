@@ -47,11 +47,12 @@ table {
 td {
     border: 1px black;
     padding: 0.5em;
+    background-color: white;
     text-align: center;
 }
 
 /* Form formatting */
-#inputArea {
+#controlPanel {
     text-align: center;
 }
 
@@ -92,7 +93,7 @@ button {
 
 /* Styles for jQuery validation */
 input.error {
-    background-color: rgba(255, 0, 0, 0.4);
+    background-color: #FF6666;
 }
 
 label.error {
@@ -100,4 +101,15 @@ label.error {
     font-style: italic;
     font-weight: 400;
     margin-left: 0.5em;
+}
+
+/* Styles for jQuery UI widgets */
+.ui-widget {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+}
+
+.ui-widget button {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
 }
