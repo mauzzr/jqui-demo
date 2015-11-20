@@ -51,4 +51,15 @@ $(document).ready(function(){
     $("#sliderColumnEnd").slider(objInputSliderOpts);
     $("#sliderRowStart").slider(objInputSliderOpts);
     $("#sliderRowEnd").slider(objInputSliderOpts);
+
+    // Initialize tab removal form validation
+    $("#tabForm").validate({
+        submitHandler: function(form) {
+
+        },
+        rules: {
+            tStart: { required: true, integer: true, min: 2 },
+            tEnd: { required: true, integer: true, min: 2, greaterEqual: "tStart" }
+        }
+    })
 });
