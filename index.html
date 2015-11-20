@@ -9,9 +9,9 @@
            File: index.html, created 17 Nov. 2015
            This extension of the previously written multiplication table generator uses the jQuery UI framework to
            implement support for a tabbed interface of many generated tables.
-           See: js/mtable.js
+           See: js/mtable.js, js/tabs.js
     -->
-    <title>91.461 Assignment 7</title>
+    <title>91.461 Assignment 8</title>
     <link rel="stylesheet" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
     <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />
@@ -20,37 +20,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/mtable.js"></script>
     <script src="js/tabs.js"></script>
+    <script src="js/mtable.js"></script>
 </head>
 <body>
     <div id="mainContent">
-        <h1>Multiplication Table Generator</h1>
-        <h2>91.461 Assignment 7</h2>
+        <h1>Tabbed Multiplication Table Generator</h1>
+        <h2>91.461 Assignment 8</h2>
         <!-- The tableArea div is now going to be commandeered by the jQuery UI plugin for tabs -->
         <div id="tableArea">
             <ul>
+                <li><a href="#controlPanel">Control Panel</a></li>
             </ul>
-        </div>
-        <div id="inputArea">
-        <form name="mainForm" id="mainForm" method="GET">
-            <fieldset>
-                <legend>Columns</legend>
-                Start:<br />
-                <input name="cStart" id="cStart" /><label for="cStart" class="error"></label><br />
-                End:<br />
-                <input name="cEnd" id="cEnd" /><label for="cEnd" class="error"></label>
-            </fieldset>
-            <fieldset>
-                <legend>Rows</legend>
-                Start:<br />
-                <input name="rStart" id="rStart" /><label for="rStart" class="error"></label><br />
-                End:<br />
-                <input name="rEnd" id="rEnd" /><label for="rEnd" class="error"></label>
-            </fieldset><br />
-            <button type="submit">Generate</button>
-            <button type="reset">Clear</button>
-        </form>
+            <div id="controlPanel">
+                <!-- Form submission is now handled fully in js (see: mtable.js) -->
+                <form name="mainForm" id="mainForm">
+                    <fieldset>
+                        <legend>Columns</legend>
+                        Start:<br />
+                        <input name="cStart" id="cStart" /><label for="cStart" class="error"></label><br />
+                        End:<br />
+                        <input name="cEnd" id="cEnd" /><label for="cEnd" class="error"></label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Rows</legend>
+                        Start:<br />
+                        <input name="rStart" id="rStart" /><label for="rStart" class="error"></label><br />
+                        End:<br />
+                        <input name="rEnd" id="rEnd" /><label for="rEnd" class="error"></label>
+                    </fieldset><br />
+                    <button type="submit">Generate</button>
+                    <button type="reset">Clear</button>
+                </form>
+            </div>
         </div>
         <div id="message"></div>
     </div>
