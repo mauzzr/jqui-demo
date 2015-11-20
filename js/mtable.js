@@ -81,7 +81,8 @@ var checkInputs = function(objInput) {
 /** Setup: wait for the document to load, then add the validate listener and run the
  *  search string parsing and table generation logic */
 $(document).ready(function() {
-    var mainForm = $("#mainForm");
+    var mainForm = $("#mainForm"),
+        objInputVals = {};
 
     // Add a rule to check for end values being greater than or equal to the start values
     $.validator.addMethod("greaterEqual", function(value, element, param) {
@@ -104,6 +105,12 @@ $(document).ready(function() {
 
     // Return false at the end of the submit handler to suppress the page refresh
     mainForm.submit(function(){
+        objInputVals.cStart = $("#cStart").val();
+        objInputVals.cEnd = $("#cEnd").val();
+        objInputVals.rStart = $("#rStart").val();
+        objInputVals.rEnd = $("#rEnd").val();
+
+        generateTable(objInputVals);
 
         return false;
     });
@@ -116,7 +123,7 @@ $(document).ready(function() {
             cEnd: { required: true, integer: true, greaterEqual: "cStart", deltaRange: ["cStart", 25], max: 1000 }
         }
     });
-
+    /*
     // If we've got a search string, parse it
     if(location.search) {
         var i, inputVals = [], inputObj = {},
@@ -140,4 +147,5 @@ $(document).ready(function() {
             generateTable(inputObj);
         }
     }
+    */
 });
